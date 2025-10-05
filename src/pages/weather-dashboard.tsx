@@ -8,6 +8,7 @@ import CurrentWeather from '@/components/current-weather'
 import HourlyTemperature from '@/components/hourly-temperature'
 import { WeatherDetails } from '@/components/weather-details'
 import { WeatherForecast } from '@/components/weather-forecast'
+import { FavoriteCities } from '@/components/favorite-cities';
 const WeatherDashboard = () => {
     const {coordinates, error:locationError, isLoading:locationLoading, getLocation} = useGeolocation();
     //console.log(coordinates, locationError, locationLoading, getLocation);
@@ -89,6 +90,7 @@ const WeatherDashboard = () => {
                 <RefreshCw className={`h-4 w-4 ${weatherQuery.isFetching ? "animate-spin" : ""}`} />
             </Button>
         </div>
+        <FavoriteCities />
         <div className='grid gap-6'>
             <div className="flex flex-col lg:flex-row gap-4">
                   <CurrentWeather data={weatherQuery.data} locationName={locationName}/>
@@ -98,6 +100,7 @@ const WeatherDashboard = () => {
         <div className='grid gap-6 md:grid-cols-2 items-start'>
         <WeatherDetails data={weatherQuery.data} />
         <WeatherForecast data={forecastQuery.data} />
+      
         </div>
     </div>
   )
